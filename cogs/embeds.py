@@ -1,6 +1,7 @@
+#!/usr/bin/python
 import discord
 import datetime
-from datetime import timezone, tzinfo, timedelta
+from datetime import datime
 from discord.utils import get
 from discord.ext.commands import Bot
 from discord.ext import commands, tasks

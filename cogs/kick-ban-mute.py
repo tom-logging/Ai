@@ -1,10 +1,10 @@
+#!/usr/bin/python
 import discord
 from discord.ext import commands
 from discord import Member
 from discord.utils import get
 
 class Kickbanmute(commands.Cog):
-
     def __init__(self, client):
         self.client = client
 

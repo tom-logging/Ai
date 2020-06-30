@@ -1,16 +1,11 @@
 import discord
 import datetime
-import time as timeModule
-import time
-import pytz
 from datetime import timezone, tzinfo, timedelta
-from pytz import timezone
 from discord.utils import get
 from discord.ext.commands import Bot
 from discord.ext import commands, tasks
 
 class Embeds(commands.Cog):
-
     def __init__(self, client):
         self.client = client
 

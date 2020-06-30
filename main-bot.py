@@ -1,9 +1,9 @@
+#!/usr/bin/python
 import discord
 import os
 import asyncio
 import asyncpg
 import datetime
-import urllib.parse as urlparse
 from datetime import datetime
 from discord.utils import get
 from discord.ext import commands, tasks

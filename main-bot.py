@@ -1,11 +1,7 @@
 #!/usr/bin/python
-import discord
 import os
+import discord
 import asyncio
-import asyncpg
-import datetime
-from datetime import datetime
-from discord.utils import get
 from discord.ext import commands, tasks
 from discord.utils import get
 from discord import Game

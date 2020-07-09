@@ -32,7 +32,7 @@ class Time(commands.Cog):
         # Convert to Eastern time zone
         now_utc = datetime.now(timezone('UTC'))
         now_canada_east = now_utc.astimezone(timezone('Canada/Eastern'))
-        await ctx.send (now_canada_east.strftime(date) + " (Eastern Standard Time)")
+        await ctx.send (now_canada_east.strftime(date) + "(Eastern Standard Time)")
 
     @commands.command(aliases=['TIMECST', 'TimeCST', 'timecst'])
     async def timeCST(self, ctx):
@@ -114,9 +114,6 @@ class Time(commands.Cog):
         now_utc = datetime.now(timezone('UTC'))
         now_cn = now_utc.astimezone(timezone('Canada/Eastern'))
         await ctx.send (now_cn.strftime(date)+ " (Canada/Eastern)")
-
-
-
 
 def setup(client):
     client.add_cog(Time(client))

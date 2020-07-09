@@ -1,8 +1,5 @@
 import discord
-import json
 import asyncio
-import os
-import asyncpg
 import random
 from discord import Member
 from discord.ext import commands

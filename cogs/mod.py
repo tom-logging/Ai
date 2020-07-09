@@ -4,22 +4,31 @@ from discord.ext import commands
 from discord import Member
 from discord.utils import get
 
-class Kickbanmute(commands.Cog):
+class mod(commands.Cog):
+
     def __init__(self, client):
         self.client = client
 
-    @commands.command(aliases=['KICK'])
+    @commands.command(aliases=['KICK', 'Kick'])
     @commands.has_permissions(administrator=True)
     async def kick(self, ctx, member : discord.Member, *, reason=None):
         await member.kick(reason=reason)
+    @kick.error
+    async def kick_error(self, ctx, error):
+        if isinstance(error, commands.CheckFailure):
+            await ctx.send("You are not allowed to kick people")
 
-    @commands.command(aliases=['Ban'])
+    @commands.command(aliases=['Ban', 'BAN'])
     @commands.has_permissions(administrator=True)
     async def ban(self, ctx, member : discord.Member, *, reason=None):
         await member.ban(reason=reason)
         await ctx.send(f'Banned {member.mention}')
+    @ban.error
+    async def ban_error(self, ctx, error):
+        if isinstance(error, commands.CheckFailure):
+            await ctx.send("You are not allowed to ban people")
 
-    @commands.command(aliases=['Unban'])
+    @commands.command(aliases=['Unban', 'UNBAN'])
     @commands.has_permissions(administrator=True)
     async def unban(self, ctx, *, member):
         banned_users = await ctx.guild.bans()
@@ -32,8 +41,12 @@ class Kickbanmute(commands.Cog):
                 await ctx.guild.unban(user)
                 await ctx.send(f'Unbanned {user.mention}')
                 return
+    @unban.error
+    async def unban_error(self, ctx, error):
+        if isinstance(error, commands.CheckFailure):
+            await ctx.send("You are not allowed to unban people")
 
-    @commands.command(aliases=['Mute'])
+    @commands.command(aliases=['Mute', 'MUTED'])
     @commands.has_permissions(administrator=True)
     async def mute(self, ctx, member: discord.Member=None):
         if not member:
@@ -47,7 +60,7 @@ class Kickbanmute(commands.Cog):
         if isinstance(error, commands.CheckFailure):
             await ctx.send("You are not allowed to mute people")
 
-    @commands.command(aliases=['Unmute'])
+    @commands.command(aliases=['Unmute', 'UNMUTE'])
     @commands.has_permissions(administrator=True)
     async def unmute(self, ctx, member: discord.Member=None):
         if not member:
@@ -56,6 +69,10 @@ class Kickbanmute(commands.Cog):
         role = discord.utils.get(ctx.guild.roles, name="Muted")
         await member.remove_roles(role)
         await ctx.send(f'unmuted {member.mention}')
+    @unmute.error
+    async def unmute_error(self, ctx, error):
+        if isinstance(error, commands.CheckFailure):
+            await ctx.send("You are not allowed to unmute people")
 
 def setup(client):
-    client.add_cog(Kickbanmute(client))
+    client.add_cog(mod(client))
